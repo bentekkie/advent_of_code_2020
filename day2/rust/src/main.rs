@@ -12,22 +12,26 @@ fn main() {
 
 fn part1() -> Option<usize> {
     if let Ok(lines) = read_lines("../i") {
-        Some(lines
+        Some(
+            lines
                 .filter_map(Result::ok)
                 .map(|line| parse_line(&line))
                 .flatten()
                 .filter(ParsedLine::is_valid_part_1)
-                .count());
+                .count(),
+        );
     }
     None
 }
 fn part2() -> Option<usize> {
     if let Ok(lines) = read_lines("../i") {
-        Some(lines
-        .filter_map(Result::ok)
-        .map(|line| parse_line(&line))
-        .flatten()
-        .filter(ParsedLine::is_valid_part_2).count()
+        Some(
+            lines
+                .filter_map(Result::ok)
+                .map(|line| parse_line(&line))
+                .flatten()
+                .filter(ParsedLine::is_valid_part_2)
+                .count(),
         );
     }
     None
@@ -46,7 +50,7 @@ impl ParsedLine {
         count >= self.first_num && count <= self.second_num
     }
     fn is_valid_part_2(&self) -> bool {
-        let first_loc =  self.password.as_bytes()[self.first_num - 1] as char == self.letter;
+        let first_loc = self.password.as_bytes()[self.first_num - 1] as char == self.letter;
         let second_loc = self.password.as_bytes()[self.second_num - 1] as char == self.letter;
         first_loc ^ second_loc
     }
