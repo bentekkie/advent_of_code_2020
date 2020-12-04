@@ -5,3 +5,5 @@ authors = ["bentekkie"]
 
 [dependencies]
 regex = "1.4.2"
+lazy_static = "1.4.0"
+snafu = "0.6.9"
