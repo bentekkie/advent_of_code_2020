@@ -13,26 +13,30 @@ fn main() {
 }
 
 fn part1() -> Result<usize> {
-    trees_in_path(3., 1)
+    trees_in_path(3, 1)
 }
 
 fn part2() -> Result<usize> {
-    let nums = [
-        trees_in_path(1., 1),
-        trees_in_path(3., 1),
-        trees_in_path(5., 1),
-        trees_in_path(7., 1),
-        trees_in_path(0.5, 2),
-    ];
-    Ok(nums.iter().flatten().product::<usize>())
+    Ok([
+        trees_in_path(1, 1),
+        trees_in_path(3, 1),
+        trees_in_path(5, 1),
+        trees_in_path(7, 1),
+        trees_in_path(1, 2),
+    ]
+    .iter()
+    .flatten()
+    .product())
 }
 
-fn trees_in_path(right: f32, down: usize) -> Result<usize> {
+fn trees_in_path(right: usize, down: usize) -> Result<usize> {
     Ok(read_lines("../i")?
+        .step_by(down)
         .map(|line| line.context(ReadLine {})?.parse::<ParsedLine>())
         .flatten()
         .enumerate()
-        .filter(|(i, line)| i % down == 0 && line.tree_at(*i, right))
+        .map(|(i, line)| (i*right, line))
+        .filter(|(i, line)| line.tree_at(i))
         .count())
 }
 
@@ -41,9 +45,8 @@ struct ParsedLine {
     line: String,
 }
 impl ParsedLine {
-    fn tree_at(&self, i: usize, right: f32) -> bool {
-        self.line.as_bytes()[((((i as f32) * right).round() as usize) % self.line.len())] as char
-            == '#'
+    fn tree_at(&self, i: &usize) -> bool {
+        self.line.as_bytes()[i % self.line.len()] as char == '#'
     }
 }
 impl FromStr for ParsedLine {
