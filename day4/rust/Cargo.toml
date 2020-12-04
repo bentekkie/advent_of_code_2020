@@ -1,7 +1,9 @@
 [package]
-name = "day3"
+name = "day4"
 version = "0.1.0"
 authors = ["bentekkie"]
 
 [dependencies]
 snafu = "0.6.9"
+lazy_static = "1.4.0"
+regex = "1.4.2"

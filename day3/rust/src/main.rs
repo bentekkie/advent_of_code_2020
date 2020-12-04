@@ -1,4 +1,3 @@
-extern crate lazy_static;
 extern crate snafu;
 
 use snafu::{ResultExt, Snafu};

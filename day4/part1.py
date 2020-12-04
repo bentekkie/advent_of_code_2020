@@ -1,0 +1,1 @@
+print(sum(1 for p in open('i','r').read().split("\n\n")if all(s in p.replace('\n',' ')for s in["byr:","iyr:","eyr:","hgt:","hcl:","ecl:","pid:"])))
