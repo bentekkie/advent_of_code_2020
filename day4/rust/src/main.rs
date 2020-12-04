@@ -2,7 +2,6 @@ extern crate lazy_static;
 extern crate regex;
 extern crate snafu;
 
-
 use lazy_static::lazy_static;
 use regex::Regex;
 use snafu::{OptionExt, ResultExt, Snafu};
@@ -83,16 +82,18 @@ impl FromStr for Passport {
 
 impl Passport {
     fn is_valid(&self) -> Result<bool> {
-        Ok((1920..=2002).contains(&self.byr.parse::<i32>().context(ParseInt {})?)
-            && (2010..=2020).contains(&self.iyr.parse::<i32>().context(ParseInt {})?)
-            && (2020..=2030).contains(&self.eyr.parse::<i32>().context(ParseInt {})?)
-            && self.hgt_valid()?
-            && self.hcl_valid()?
-            && ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
-                .iter()
-                .any(|&s| self.ecl == s)
-            && self.pid.len() == 9
-            && self.pid.parse::<i32>().is_ok())
+        Ok(
+            (1920..=2002).contains(&self.byr.parse::<i32>().context(ParseInt {})?)
+                && (2010..=2020).contains(&self.iyr.parse::<i32>().context(ParseInt {})?)
+                && (2020..=2030).contains(&self.eyr.parse::<i32>().context(ParseInt {})?)
+                && self.hgt_valid()?
+                && self.hcl_valid()?
+                && ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
+                    .iter()
+                    .any(|&s| self.ecl == s)
+                && self.pid.len() == 9
+                && self.pid.parse::<i32>().is_ok(),
+        )
     }
     fn hgt_valid(&self) -> Result<bool> {
         if self.hgt.ends_with("cm") {
