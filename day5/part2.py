@@ -1,0 +1,1 @@
+print(-sum(t:=[int("".join("0"if x in"FL"else"1"for x in l.strip()),2)for l in open('i','r')])+sum(range(min(t),max(t)+1)))
