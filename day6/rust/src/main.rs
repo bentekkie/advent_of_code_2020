@@ -5,8 +5,6 @@ use itertools::Itertools;
 use snafu::{OptionExt, ResultExt, Snafu};
 use std::collections::HashSet;
 use std::fs;
-use std::hash::Hash;
-use std::iter::FromIterator;
 use std::path::{Path, PathBuf};
 
 fn main() {
@@ -37,8 +35,8 @@ fn part2() -> Result<usize> {
         .sum())
 }
 
-fn hashset(data: &String) -> HashSet<u8> {
-    HashSet::from_iter(data.as_bytes().iter().cloned())
+fn hashset(data: &String) -> HashSet<&u8> {
+    data.as_bytes().iter().collect::<HashSet<_>>()
 }
 
 fn intersect_count(sets: &Vec<String>) -> Result<usize> {
@@ -74,11 +72,6 @@ where
             filename: filename.as_ref(),
         })?
         .split("\r\n\r\n")
-        .map(|s| {
-            s.to_string()
-                .split("\r\n")
-                .map(|s| s.to_string())
-                .collect::<Vec<_>>()
-        })
-        .collect::<Vec<_>>())
+        .map(|s| s.to_string().split("\r\n").map(|s| s.to_string()).collect())
+        .collect())
 }
