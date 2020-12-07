@@ -1,0 +1,1 @@
+print(sum(len(set.intersection(*(set(x)for x in l.split('\n'))))for l in open('i','r').read().split("\n\n")))

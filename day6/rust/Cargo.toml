@@ -1,0 +1,8 @@
+[package]
+name = "day6"
+version = "0.1.0"
+authors = ["bentekkie"]
+
+[dependencies]
+snafu = "0.6.9"
+itertools =  "0.8.0"

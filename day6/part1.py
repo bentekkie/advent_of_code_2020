@@ -1,0 +1,1 @@
+print(sum(len(set(l))-1 for l in open('i','r').read().split("\n\n"))+1)
