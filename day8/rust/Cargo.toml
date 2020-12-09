@@ -1,0 +1,11 @@
+[package]
+name = "day8"
+version = "0.1.0"
+authors = ["bentekkie"]
+
+[dependencies]
+snafu = "0.6.9"
+itertools =  "0.8.0"
+petgraph = "0.5.1"
+enum_derive = "0.1.7"
+macro-attr = "0.2.0"
