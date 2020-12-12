@@ -1,0 +1,5 @@
+f=lambda i,j,di,dj,x:0<=i<len(x)and 0<=j<len(x[0])and(x[i][j]=="#" or (x[i][j]=="."and f(i+di,j+dj,di,dj,x)))
+d=lambda i,j,y:sum(f(i+k,j+l,k,l,y)for k in range(-1,2)for l in range(-1,2) if(k,l)!=(0,0))
+m=lambda i,j,x:"#"if x[i][j]=="L"and d(i,j,x)==0 else("L"if x[i][j]=="#"and d(i,j,x)>4 else x[i][j])
+e=lambda x:k if x==(k:=[[m(i,j,x)for j in range(len(x[0]))]for i in range(len(x))])else e(k)
+print(sum(1 for l in e([list(l.strip())for l in open('i','r')]) for c in l if c=="#"))
