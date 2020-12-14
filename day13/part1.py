@@ -1,0 +1,7 @@
+t,b=tuple(open('i','r'))
+t=int(t)
+b=b.split(',')
+print(t,b)
+f=lambda x: x-(t%x)
+r=min((int(x) for x in b if x!='x'),key=f)
+print(r*f(r))

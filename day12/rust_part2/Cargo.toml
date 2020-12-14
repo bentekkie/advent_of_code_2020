@@ -1,0 +1,7 @@
+[package]
+name = "day11part2"
+version = "0.1.0"
+authors = ["bentekkie"]
+
+[dependencies]
+snafu = "0.6.9"
